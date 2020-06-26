@@ -29,7 +29,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
   if [ -e ${SRC}.tar.gz ]; then
     # looks for zipped files first
-    SRC=${SRC}.tar.gz
+    SRC="${SRC}.tar.gz"
     echo "found zipped ${SRC}" | indent
     GZIPPED=true
   elif [ -e ${SRC} ]; then
