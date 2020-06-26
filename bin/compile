@@ -52,7 +52,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   if [ -z $GZIPPED ]; then
     cp -r ${SRC} ${DEST}
   else
-    tar xvfz ${SRC} --directory ${DEST}
+    tar xvfz ${SRC} --directory ${DEST} > /dev/null
   fi
 
   echo " ✓ ${CACHE_SIZE}"
