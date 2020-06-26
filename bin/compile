@@ -28,7 +28,11 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   fi
 
   # skip non-existing files
-  if ! [ -e ${SRC} ]; then
+  if [ -e ${SRC}.tar.gz ]; then
+    SRC=${SRC}.tar.gz
+    GZIPPED=true
+  elif [ -e ${SRC} ]; then
+  else
     echo " ✗ - not found"
     continue
   fi
@@ -41,11 +45,14 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     rm -r ${DEST}
   fi
 
-  # cache size
   CACHE_SIZE=$(du -sh ${SRC}  | cut -f1)
 
   # copy files from cache
-  cp -r ${SRC} ${DEST}
+  if [ -z $GZIPPED ]; then
+    tar xvfz ${SRC} --directory ${DEST}
+  else
+    cp -r ${SRC} ${DEST}
+  fi
 
   echo " ✓ ${CACHE_SIZE}"
 done
