@@ -21,7 +21,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   if [[ ${FILENAME} = \~/* ]]; then
     WITHOUT_TILDE=$(echo ${FILENAME} | sed 's/~\///')
     SRC=${CACHE_DIR}/buildcache/${HOME_FOLDER_REPLACEMENT}/${WITHOUT_TILDE}
-    DEST=~/${WITHOUT_TILDE}
+    DEST=~/
   else
     SRC=${CACHE_DIR}/buildcache/${FILENAME}
     DEST=${BUILD_DIR}/
@@ -59,7 +59,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     echo $SRC
     echo -n "DEST "
     echo $DEST
-    tar xvfz ${SRC} ${BUILD_DIR}
+    tar xvfz ${SRC} --directory ${DEST}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
