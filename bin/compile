@@ -21,10 +21,10 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   if [[ ${FILENAME} = \~/* ]]; then
     WITHOUT_TILDE=$(echo ${FILENAME} | sed 's/~\///')
     SRC=${CACHE_DIR}/buildcache/${HOME_FOLDER_REPLACEMENT}/${WITHOUT_TILDE}
-    DEST=~/
+    DEST_DIR=~/
   else
     SRC=${CACHE_DIR}/buildcache/${FILENAME}
-    DEST=${BUILD_DIR}/
+    DEST_DIR=${BUILD_DIR}/
   fi
 
   if [ -e ${SRC}.tar.gz ]; then
@@ -42,24 +42,24 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   fi
 
   # create parent directory structure
-  mkdir -p $(dirname ${DEST})
+  mkdir -p $(dirname ${DEST_DIR})
 
   # delete old files
-  if [ -e ${DEST} ]; then
-    rm -r ${DEST}
+  if [ -e ${DEST_DIR}/${FILENAME} ]; then
+    rm -r ${DEST_DIR}/${FILENAME}
   fi
 
   CACHE_SIZE=$(du -sh ${SRC}  | cut -f1)
 
   # copy files from cache
   if [ -z $GZIPPED ]; then
-    cp -r ${SRC} ${DEST}
+    cp -r ${SRC} ${DEST_DIR}
   else
     echo -n "SRC "
     echo $SRC
-    echo -n "DEST "
-    echo $DEST
-    tar xvfz ${SRC} --directory ${DEST}
+    echo -n "DEST_DIR "
+    echo $DEST_DIR
+    tar xvfz ${SRC} --directory ${DEST_DIR}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
