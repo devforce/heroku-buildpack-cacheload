@@ -24,7 +24,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     DEST=~/${WITHOUT_TILDE}
   else
     SRC=${CACHE_DIR}/buildcache/${FILENAME}
-    DEST=${BUILD_DIR}/${FILENAME}
+    DEST=${BUILD_DIR}/
   fi
 
   if [ -e ${SRC}.tar.gz ]; then
@@ -59,7 +59,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     echo $SRC
     echo -n "DEST "
     echo $DEST
-    tar xvfz ${SRC} ${DEST}
+    tar xvfz ${SRC} ${BUILD_DIR}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
