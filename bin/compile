@@ -59,7 +59,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     echo $SRC
     echo -n "DEST "
     echo $DEST
-    tar xvfz ${SRC} --directory ${DEST}
+    tar xvfz ${SRC} ${DEST}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
