@@ -32,6 +32,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     SRC=${SRC}.tar.gz
     GZIPPED=true
   elif [ -e ${SRC} ]; then
+    true # just keep going
   else
     echo " ✗ - not found"
     continue
