@@ -30,7 +30,6 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   if [ -e ${SRC}.tar.gz ]; then
     # looks for zipped files first
     SRC="${SRC}.tar.gz"
-    echo "found zipped ${SRC}"
     GZIPPED=true
   elif [ -e ${SRC} ]; then
      # file exists unzipped, just keep going
@@ -55,10 +54,6 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
     cp -r ${SRC} ${DEST_DIR}
   else
-    echo -n "SRC "
-    echo $SRC
-    echo -n "DEST_DIR "
-    echo $DEST_DIR
     tar xvfz ${SRC} --directory ${DEST_DIR} > /dev/null
   fi
 
