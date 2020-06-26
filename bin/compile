@@ -41,18 +41,18 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     continue
   fi
 
-  # create parent directory structure
-  mkdir -p $(dirname ${DEST_DIR})
-
-  # delete old files
-  if [ -e ${DEST_DIR}/${FILENAME} ]; then
-    rm -r ${DEST_DIR}/${FILENAME}
-  fi
 
   CACHE_SIZE=$(du -sh ${SRC}  | cut -f1)
 
   # copy files from cache
   if [ -z $GZIPPED ]; then
+    # create parent directory structure
+    mkdir -p $(dirname ${DEST_DIR/${FILENAME}})
+
+    # delete old files
+    if [ -e ${DEST_DIR}/${FILENAME} ]; then
+      rm -r ${DEST_DIR}/${FILENAME}
+    fi
     cp -r ${SRC} ${DEST_DIR}
   else
     echo -n "SRC "
