@@ -27,6 +27,10 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     DEST=${BUILD_DIR}/${FILENAME}
   fi
 
+  echo
+  echo "SRC ${SRC}"
+  echo "DEST ${DEST}"
+
   # skip non-existing files
   if ! [ -e ${SRC} ]; then
     echo " ✗ - not found"
