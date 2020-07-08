@@ -21,10 +21,10 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   if [[ ${FILENAME} = \~/* ]]; then
     WITHOUT_TILDE=$(echo ${FILENAME} | sed 's/~\///')
     SRC=${CACHE_DIR}/buildcache/${HOME_FOLDER_REPLACEMENT}/${WITHOUT_TILDE}
-    DEST_DIR=~/
+    DEST_DIR=~
   else
     SRC=${CACHE_DIR}/buildcache/${FILENAME}
-    DEST_DIR=${BUILD_DIR}/
+    DEST_DIR=${BUILD_DIR}
   fi
 
   echo
@@ -51,7 +51,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
   CACHE_SIZE=$(du -sh ${SRC}  | cut -f1)
 
-  PARENT_DIR=$(dirname ${DEST_DIR}${FILENAME})
+  PARENT_DIR=$(dirname ${DEST_DIR}/${FILENAME})
   # create parent directory structure
   mkdir -p ${PARENT_DIR}
 
