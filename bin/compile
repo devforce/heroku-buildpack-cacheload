@@ -60,7 +60,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     cp -r ${SRC} ${DEST_DIR}
   else
     tar x --file ${SRC} --directory ${PARENT_DIR}
-    ls -al ${PARENT_DIR}
+    ls -al ${DEST_DIR}/*
   fi
 
   echo " ✓ ${CACHE_SIZE}"
