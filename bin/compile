@@ -27,6 +27,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     DEST_DIR=${BUILD_DIR}/
   fi
 
+  echo
   echo "SRC ${SRC}"
   echo "DEST ${DEST}"
 
