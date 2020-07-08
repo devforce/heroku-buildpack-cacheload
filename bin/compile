@@ -51,16 +51,16 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
   CACHE_SIZE=$(du -sh ${SRC}  | cut -f1)
 
+  PARENT_DIR=$(dirname ${DEST_DIR/${FILENAME}})
+  # create parent directory structure
+  mkdir -p ${PARENT_DIR}
+
   # copy files from cache
   if [ -z $GZIPPED ]; then
-    # create parent directory structure
-    mkdir -p $(dirname ${DEST_DIR/${FILENAME}})
-
     cp -r ${SRC} ${DEST_DIR}
   else
-    echo "DEST_DIR ${DEST_DIR}"
-    tar x --file ${SRC} --directory ${DEST_DIR}
-    ls -al ${DEST_DIR}
+    tar x --file ${SRC} --directory ${PARENT_DIR}
+    ls -al ${PARENT_DIR}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
