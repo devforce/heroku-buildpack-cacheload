@@ -55,6 +55,8 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
   # create parent directory structure
   mkdir -p ${PARENT_DIR}
 
+  echo "PARENT_DIR ${PARENT_DIR}"
+
   # copy files from cache
   if [ -z $GZIPPED ]; then
     cp -r ${SRC} ${DEST_DIR}
