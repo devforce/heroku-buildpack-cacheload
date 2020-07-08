@@ -27,8 +27,8 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
     DEST_DIR=${BUILD_DIR}/
   fi
 
+  echo
   echo "SRC ${SRC}"
-  echo "DEST_DIR ${DEST_DIR}"
 
   if [ -e ${SRC}.tar.gz ]; then
     echo "found gzipped ${SRC}.tar.gz"
@@ -58,7 +58,9 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
     cp -r ${SRC} ${DEST_DIR}
   else
+    echo "DEST_DIR ${DEST_DIR}"
     tar x --file ${SRC} --directory ${DEST_DIR}
+    ls -al ${DEST_DIR}
   fi
 
   echo " ✓ ${CACHE_SIZE}"
