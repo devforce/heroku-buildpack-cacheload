@@ -58,7 +58,7 @@ for FILENAME in $(cat ${BUILD_DIR}/.buildcache | sed '/^$/d'); do
 
     cp -r ${SRC} ${DEST_DIR}
   else
-    tar xvfz ${SRC} --directory ${DEST_DIR}
+    tar xvfz ${SRC} --directory ${DEST_DIR} > /dev/null
   fi
 
   echo " ✓ ${CACHE_SIZE}"
